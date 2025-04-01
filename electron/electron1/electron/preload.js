@@ -1,8 +1,6 @@
-import { contextBridge } from 'electron';
-import { ipcRenderer } from 'electron';
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electron', {
-    getAppPath: () => app.getAppPath(),
     getOsType: () => ipcRenderer.invoke('get-os-type'),
     getOsPlatform: () => ipcRenderer.invoke('get-os-platform'),
     getAppVersion: () => ipcRenderer.invoke('get-app-version'),
