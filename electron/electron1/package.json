@@ -1,0 +1,58 @@
+{
+	"name": "electron1",
+	"version": "1.0.0",
+	"main": "main.js",
+	"scripts": {
+		"start": "webpack-dev-server --mode development",
+		"build": "webpack --mode production",
+		"electron": "electron .",
+		"electron:dev": "concurrently -n=server,client -c=yellow,cyan \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
+		"electron:build": "npm run build && electron-builder",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"build": {
+		"appId": "com.yourcompany.yourappname",
+		"productName": "electron1",
+		"files": [
+			"main.js",
+			"dist/**/*",
+			"electron/**/*"
+		],
+		"directories": {
+			"buildResources": "assets",
+			"output": "release"
+		},
+		"mac": {
+			"category": "public.app-category.utilities"
+		},
+		"win": {
+			"target": [ "nsis" ]
+		},
+		"linux": {
+			"target": [ "deb", "rpm", "AppImage" ],
+			"category": "Utility"
+		}
+	},
+	"dependencies": {
+		"electron-is-dev": "^3.0.1",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {
+		"@babel/preset-env": "^7.26.9",
+		"@babel/preset-react": "^7.26.3",
+		"babel-loader": "^10.0.0",
+		"concurrently": "^9.1.2",
+		"electron": "^35.1.2",
+		"electron-builder": "^26.0.12",
+		"html-webpack-plugin": "^5.6.3",
+		"wait-on": "^8.0.3",
+		"webpack": "^5.98.0",
+		"webpack-cli": "^6.0.1",
+		"webpack-dev-server": "^5.2.1"
+	}
+}
